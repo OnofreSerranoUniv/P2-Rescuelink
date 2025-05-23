@@ -3,7 +3,7 @@ package com.proyectos2recuelink.views;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
@@ -14,26 +14,31 @@ import com.vaadin.flow.router.Route;
 import elemental.json.Json;
 import elemental.json.JsonObject;
 
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.io.OutputStream;
 import java.util.Scanner;
 
-@Route(value = "register", layout = MainLayout.class)
-@CssImport("styles/shared-styles.css")
+@Route(value = "register", layout = EmptyLayout.class)
+@CssImport("./styles/shared-styles.css")
 public class RegisterView extends VerticalLayout {
 
     private ProgressBar progressBar = new ProgressBar();
 
     public RegisterView() {
         setAlignItems(Alignment.CENTER);
+        setJustifyContentMode(JustifyContentMode.CENTER);
+        setSizeFull();
+        addClassName("login-view");
 
-        // Campos del formulario
+        H2 title = new H2("Crea tu cuenta en RescueLink");
+        title.addClassName("login-title");
+
         TextField usernameField = new TextField("Usuario");
         EmailField emailField = new EmailField("Correo electrónico");
         PasswordField passwordField = new PasswordField("Contraseña");
         PasswordField confirmPasswordField = new PasswordField("Repite la contraseña");
-        Checkbox volunteerCheckbox = new Checkbox("Quiero registrarme como voluntario"); // ✅ Nueva casilla para voluntarios
+        Checkbox volunteerCheckbox = new Checkbox("Quiero registrarme como voluntario");
         Checkbox termsCheckbox = new Checkbox("Acepto los términos y condiciones");
 
         Button registerButton = new Button("Registrarse", event ->
@@ -42,12 +47,13 @@ public class RegisterView extends VerticalLayout {
                         emailField.getValue(),
                         passwordField.getValue(),
                         confirmPasswordField.getValue(),
-                        volunteerCheckbox.getValue(), // ✅ Ahora pasa el valor correcto
+                        volunteerCheckbox.getValue(),
                         termsCheckbox.getValue()
                 ));
 
-        // Ajustes de diseño
         registerButton.setWidthFull();
+        registerButton.addClassName("register-button");
+
         usernameField.setWidthFull();
         emailField.setWidthFull();
         passwordField.setWidthFull();
@@ -55,20 +61,33 @@ public class RegisterView extends VerticalLayout {
         volunteerCheckbox.setWidthFull();
         termsCheckbox.setWidthFull();
 
-        FormLayout formLayout = new FormLayout(
+        Button loginRedirectButton = new Button("¿Ya tienes cuenta? Inicia sesión");
+        loginRedirectButton.addClassName("secondary-button");
+        loginRedirectButton.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate("login")));
+        loginRedirectButton.setWidthFull();
+
+        VerticalLayout formContainer = new VerticalLayout();
+        formContainer.setWidth("350px");
+        formContainer.setPadding(true);
+        formContainer.setSpacing(false);
+        formContainer.addClassName("login-form");
+
+        formContainer.add(
                 usernameField,
                 emailField,
                 passwordField,
                 confirmPasswordField,
-                volunteerCheckbox,  // ✅ Asegurar que este viene antes que el de términos
+                volunteerCheckbox,
                 termsCheckbox,
-                registerButton
+                registerButton,
+                loginRedirectButton
         );
-        formLayout.setWidth("350px");
 
-        add(formLayout, progressBar);
         progressBar.setVisible(false);
+        progressBar.setWidth("350px");
+        add(title, formContainer, progressBar);
     }
+
 
     private void registerUser(String username, String email, String password, String confirmPassword, boolean isVolunteer, boolean termsAccepted) {
         if (username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
@@ -79,7 +98,7 @@ public class RegisterView extends VerticalLayout {
             Notification.show("Las contraseñas no coinciden.", 3000, Notification.Position.MIDDLE);
             return;
         }
-        if (!termsAccepted) { // ✅ Ahora está comprobando correctamente la casilla de términos
+        if (!termsAccepted) {
             Notification.show("Debe aceptar los términos y condiciones.", 3000, Notification.Position.MIDDLE);
             return;
         }
@@ -97,7 +116,7 @@ public class RegisterView extends VerticalLayout {
             json.put("username", username);
             json.put("email", email);
             json.put("password", password);
-            json.put("isVolunteer", isVolunteer); // ✅ Se envía correctamente el valor de voluntario
+            json.put("isVolunteer", isVolunteer);
 
             try (OutputStream os = conn.getOutputStream()) {
                 byte[] input = json.toJson().getBytes("utf-8");
@@ -109,7 +128,6 @@ public class RegisterView extends VerticalLayout {
             scanner.close();
 
             progressBar.setVisible(false);
-            //Notification.show("Registro exitoso.", 3000, Notification.Position.MIDDLE);
             getUI().ifPresent(ui -> ui.navigate("login"));
         } catch (Exception e) {
             progressBar.setVisible(false);

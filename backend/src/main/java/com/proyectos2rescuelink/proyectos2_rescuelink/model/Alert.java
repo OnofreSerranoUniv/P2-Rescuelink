@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "alerts")
@@ -33,5 +37,12 @@ public class Alert {
 
     @Column(nullable = false)
     private LocalDateTime timestamp;
+
+    @Column
+    private Double latitude;
+
+    @Column
+    private Double longitude;
+
 
 }

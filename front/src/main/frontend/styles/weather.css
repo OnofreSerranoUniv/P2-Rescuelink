@@ -1,0 +1,30 @@
+.weather-view {
+    padding: 20px;
+    font-family: "Segoe UI", sans-serif;
+    color: #2c3e50;
+    background-color: #f4f9ff;
+    border-radius: 12px;
+}
+
+.weather-title {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #007BFF;
+}
+
+.weather-city {
+    font-size: 36px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.weather-status {
+    font-size: 28px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.weather-info {
+    font-size: 20px;
+    margin: 5px 0;
+}

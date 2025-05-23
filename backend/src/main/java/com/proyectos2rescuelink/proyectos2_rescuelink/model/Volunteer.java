@@ -3,11 +3,17 @@ package com.proyectos2rescuelink.proyectos2_rescuelink.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "volunteers")
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Volunteer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,8 +32,8 @@ public class Volunteer {
     private String location;
 
     @Column(nullable = false)
-    private String skills; // Ejemplo: "Primeros auxilios, Rescate en montaña"
+    private String skills;
 
     @Column(nullable = false)
-    private boolean available; // Si el voluntario
+    private boolean available;
 }

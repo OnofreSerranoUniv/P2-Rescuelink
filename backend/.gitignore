@@ -49,7 +49,3 @@ bin/
 package-lock.json
 .vite/
 .vitepress/
-
-# Configuración sensible
-src/main/resources/application.properties
-src/main/resources/application-dev.properties

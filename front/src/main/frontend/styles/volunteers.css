@@ -1,0 +1,57 @@
+.volunteer-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.volunteer-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 1rem;
+    width: 260px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.volunteer-card:hover {
+    transform: scale(1.03);
+}
+
+.volunteer-avatar {
+    margin: 0 auto 10px;
+    width: 60px;
+    height: 60px;
+}
+
+.volunteer-name {
+    font-size: 1.2rem;
+    margin: 0.3rem 0;
+}
+
+.volunteer-location,
+.volunteer-skills {
+    display: block;
+    font-size: 0.9rem;
+    margin: 0.2rem 0;
+    color: #666;
+}
+
+.volunteer-status {
+    margin-top: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    gap: 0.4rem;
+}
+
+.status-icon.available {
+    color: green;
+}
+
+.status-icon.unavailable {
+    color: red;
+}

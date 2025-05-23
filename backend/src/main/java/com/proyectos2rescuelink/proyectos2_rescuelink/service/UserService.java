@@ -52,6 +52,20 @@ public class UserService {
         return userRepository.save(newUser);
     }
 
+    @Transactional
+    public User updateVolunteerStatus(String email, boolean isVolunteer, Double latitude, Double longitude) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado."));
+
+        user.setVolunteer(isVolunteer);
+        user.setLatitude(latitude);
+        user.setLongitude(longitude);
+
+        return userRepository.save(user);
+    }
+
+
+
     public Optional<User> authenticate(String username, String password) {
         return userRepository.findByUsername(username)
                 .filter(user -> user.getPassword().equals(password));

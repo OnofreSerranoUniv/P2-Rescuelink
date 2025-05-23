@@ -25,3 +25,20 @@ function sendRequest(method, url, data = null, callback) {
     xhr.send();
   }
 }
+
+// front/src/api.js
+
+export async function registerVolunteer({ fullName, phoneNumber, location, skills }) {
+  const token = localStorage.getItem('jwt'); // o como guardes el JWT
+  const resp = await fetch('/api/volunteers/register', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ fullName, phoneNumber, location, skills })
+  });
+  if (!resp.ok) throw new Error('Error al registrar voluntario');
+  return resp.json();
+}
+

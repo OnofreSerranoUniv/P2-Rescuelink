@@ -1,7 +1,9 @@
 package com.proyectos2recuelink.views;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -20,28 +22,42 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
+import static com.proyectos2recuelink.util.ApiUtils.addAuthHeader;
+
 @PageTitle("Crear Alerta")
 @Route(value = "create-alert", layout = MainLayout.class)
-@CssImport("styles/shared-styles.css")
+@CssImport("styles/createalert.css")
 public class CreateAlertView extends VerticalLayout implements BeforeEnterObserver {
 
     private TextField titleField;
     private TextArea descriptionField;
     private TextField locationField;
+    private ComboBox<String> alertTypeField;
 
     public CreateAlertView() {
-        setAlignItems(Alignment.CENTER);
+        addClassName("create-alert-container");
         setSizeFull();
 
         H1 title = new H1("Crear Nueva Alerta");
+        title.addClassName("create-alert-title");
 
         titleField = new TextField("Título");
         descriptionField = new TextArea("Descripción");
         locationField = new TextField("Ubicación");
 
-        Button submitButton = new Button("Crear Alerta", event -> createAlert());
+        alertTypeField = new ComboBox<>("Tipo de Alerta");
+        alertTypeField.setItems("Incendio", "Inundación", "Terremoto", "Tormenta", "General");
+        alertTypeField.setPlaceholder("Selecciona un tipo");
+        alertTypeField.setClearButtonVisible(true);
 
-        add(title, titleField, descriptionField, locationField, submitButton);
+        Button submitButton = new Button("Crear Alerta", event -> createAlert());
+        submitButton.addClassName("create-alert-button");
+
+        Div formWrapper = new Div();
+        formWrapper.addClassName("create-alert-form");
+        formWrapper.add(title, titleField, descriptionField, locationField, alertTypeField, submitButton);
+
+        add(formWrapper);
     }
 
     private void createAlert() {
@@ -52,14 +68,16 @@ public class CreateAlertView extends VerticalLayout implements BeforeEnterObserv
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setDoOutput(true);
 
+            // ✅ Añadir el token de seguridad
+            addAuthHeader(conn);
+
             JsonObject json = Json.createObject();
             json.put("title", titleField.getValue());
             json.put("description", descriptionField.getValue());
             json.put("location", locationField.getValue());
-            json.put("alertType", "general"); // Ajusta esto si el backend requiere otro tipo
 
-            // 📌 Imprimir la petición JSON antes de enviarla
-            System.out.println("Enviando JSON: " + json.toJson());
+            String selectedType = alertTypeField.getValue() != null ? alertTypeField.getValue().toLowerCase() : "general";
+            json.put("alertType", selectedType);
 
             byte[] input = json.toJson().getBytes(StandardCharsets.UTF_8);
             conn.getOutputStream().write(input);
@@ -73,7 +91,7 @@ public class CreateAlertView extends VerticalLayout implements BeforeEnterObserv
 
         } catch (Exception e) {
             Notification.show("Error al crear alerta: " + e.getMessage());
-            System.out.println("Error al crear alerta: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

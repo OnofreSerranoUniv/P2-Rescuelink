@@ -1,0 +1,292 @@
+.dashboard-view {
+    background-color: #f4f6f9;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto !important;
+}
+
+.dashboard-title {
+    font-size: 2.2rem;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.main-dashboard-layout {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Secciones grandes como ubicación */
+.dashboard-large-section {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.section-desc {
+    font-size: 1rem;
+    color: #6b7280;
+}
+
+/* Tarjetas anchas como "Alertas" y "Voluntariados" */
+.dashboard-wide-card {
+    background-color: #ffffff;
+    flex: 1;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-wide-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+}
+
+.wide-card-icon {
+    font-size: 2rem;
+    color: #2563eb;
+    margin-bottom: 1rem;
+}
+
+.wide-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+
+.alert-list {
+    width: 100%;
+}
+
+.alert-item {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 0.95rem;
+    color: #374151;
+}
+
+.alert-item:last-child {
+    border-bottom: none;
+}
+
+/* Botón de las tarjetas */
+.wide-card-button {
+    margin-top: auto;
+    background-color: #2563eb;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.wide-card-button:hover {
+    background-color: #1e40af;
+}
+
+/* Tarjetas pequeñas tipo acceso rápido */
+.dashboard-quick-card {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-quick-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+}
+
+.quick-card-icon {
+    font-size: 1.8rem;
+    color: #2563eb;
+    margin-bottom: 0.5rem;
+}
+
+.quick-card-title {
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 1rem;
+}
+
+.dashboard-title {
+    font-size: 2.2rem;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.main-dashboard-layout {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Secciones grandes como ubicación */
+.dashboard-large-section {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.section-desc {
+    font-size: 1rem;
+    color: #6b7280;
+}
+
+/* Tarjetas anchas como "Alertas" y "Voluntariados" */
+.dashboard-wide-card {
+    background-color: #ffffff;
+    flex: 1;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-wide-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+}
+
+.wide-card-icon {
+    font-size: 2rem;
+    color: #2563eb;
+    margin-bottom: 1rem;
+}
+
+.wide-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+
+.alert-list {
+    width: 100%;
+}
+
+.alert-item {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 0.95rem;
+    color: #374151;
+}
+
+.alert-item:last-child {
+    border-bottom: none;
+}
+
+/* Botón de las tarjetas */
+.wide-card-button {
+    margin-top: auto;
+    background-color: #2563eb;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.wide-card-button:hover {
+    background-color: #1e40af;
+}
+
+/* Tarjetas pequeñas tipo acceso rápido */
+.dashboard-quick-card {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-quick-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+}
+
+.quick-card-icon {
+    font-size: 1.8rem;
+    color: #2563eb;
+    margin-bottom: 0.5rem;
+}
+
+.quick-card-title {
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 1rem;
+}
+.location-map-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.ubicacion-section {
+    min-width: 280px;
+    max-width: 400px;
+    flex: 1;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.map-dashboard {
+    flex: 2;
+    height: 300px;
+    min-width: 300px;
+    border-radius: 12px;
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}

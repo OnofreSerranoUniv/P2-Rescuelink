@@ -37,4 +37,12 @@ public class User {
         return roles.stream().anyMatch(role -> role.getName() == roleType);
     }
 
+    @Column
+    private Double latitude;
+
+    @Column
+    private Double longitude;
+
+
+
 }

@@ -1,13 +1,18 @@
 package com.proyectos2rescuelink.proyectos2_rescuelink.controller;
 
 import com.proyectos2rescuelink.proyectos2_rescuelink.model.Alert;
+import com.proyectos2rescuelink.proyectos2_rescuelink.dto.AlertDTO;
 import com.proyectos2rescuelink.proyectos2_rescuelink.service.AlertService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/alerts")
@@ -48,8 +53,21 @@ public class AlertController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Alert>> getAllAlerts() {
-        return ResponseEntity.ok(alertService.getAllAlerts());
+    public ResponseEntity<List<AlertDTO>> getAllAlerts() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d 'de' MMMM 'de' yyyy, HH:mm'h'")
+                .withLocale(new Locale("es", "ES"));
+
+        List<AlertDTO> alertDTOs = alertService.getAllAlerts().stream().map(alert -> new AlertDTO(
+                alert.getId(),
+                alert.getTitle(),
+                alert.getDescription(),
+                alert.getLocation(),
+                alert.getAlertType(),
+                alert.isActive(),
+                alert.getTimestamp().format(formatter)
+        )).collect(Collectors.toList());
+
+        return ResponseEntity.ok(alertDTOs);
     }
 
     @GetMapping("/active")
@@ -72,4 +90,27 @@ public class AlertController {
             return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
         }
     }
+
+    @PostMapping("/{id}/join")
+    public ResponseEntity<?> joinAlert(@PathVariable Long id, Principal principal) {
+        try {
+            String email = principal.getName();
+
+            Optional<Alert> alertOpt = alertService.getAlertById(id);
+            if (alertOpt.isEmpty()) {
+                return ResponseEntity.status(404).body(Map.of("error", "Alerta no encontrada"));
+            }
+
+            boolean joined = alertService.joinAlert(email, id);
+
+            if (joined) {
+                return ResponseEntity.ok(Map.of("message", "Te has unido a la alerta correctamente"));
+            } else {
+                return ResponseEntity.status(409).body(Map.of("error", "Ya estás unido a esta alerta"));
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
+
 }

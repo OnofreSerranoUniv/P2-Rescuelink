@@ -1,0 +1,88 @@
+.alerts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    width: 100%;
+    max-width: 1300px;
+    box-sizing: border-box;
+}
+
+.alert-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.alert-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+}
+
+
+.alert-card h4 {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.alert-card p {
+    margin: 0.25rem 0;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.alert-card img {
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 0.75rem;
+}
+
+.alert-card button {
+    align-self: stretch;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    margin-top: 0.75rem;
+    padding: 0.6rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.alert-card button:hover {
+    background-color: #0056b3;
+}
+
+/* 🔥 Incendio */
+.type-incendio {
+    border-left: 6px solid #e53935; /* rojo fuego */
+}
+
+/* 🌊 Inundación */
+.type-inundación {
+    border-left: 6px solid #1e88e5; /* azul agua */
+}
+
+/* 🌍 Terremoto */
+.type-terremoto {
+    border-left: 6px solid #6d4c41; /* marrón tierra */
+}
+
+/* 🌩️ Tormenta */
+.type-tormenta {
+    border-left: 6px solid #ffb300; /* amarillo eléctrico */
+}
+
+/* 🟦 General (por defecto) */
+.type-general {
+    border-left: 6px solid #9e9e9e; /* gris */
+}
+
