@@ -21,7 +21,7 @@ import java.util.Scanner;
 @CssImport("styles/alert.css")
 public class AlertsView extends VerticalLayout implements BeforeEnterObserver {
 
-    private static final String DEFAULT_IMAGE_URL = "https://images.genius.com/71188f0b7269154a8d6ee7e0b0e77229.300x300x1.jpg";
+    private static final String DEFAULT_IMAGE_URL = "https://img.freepik.com/vector-premium/senal-alerta-roja-sobre-fondo-rojo-advertencia-sombra-atencion_568973-490.jpg";
 
     private Div alertsContainer = new Div();
 

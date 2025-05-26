@@ -24,14 +24,14 @@ public class WeatherView extends VerticalLayout {
         setJustifyContentMode(JustifyContentMode.CENTER);
         addClassName("weather-view");
 
-        Double lat = (Double) VaadinSession.getCurrent().getAttribute("latitude");//Ubicacion Actual
-        Double lon = (Double) VaadinSession.getCurrent().getAttribute("longitude");//Ubicacion Actual
+        //Double lat = (Double) VaadinSession.getCurrent().getAttribute("latitude");//Ubicacion Actual
+        //Double lon = (Double) VaadinSession.getCurrent().getAttribute("longitude");//Ubicacion Actual
 
         //Double lat = 64.1355; //Reykjavik
         //Double lon = -21.8954; //Reykjavik
 
-        //Double lat = 13.7563;//Bangkok
-        //Double lon = 100.5018;//Bangkok
+        Double lat = 40.416729;//Bangkok
+        Double lon = -3.703339;//Bangkok
 
         //Double lat = 43.3619;
         //Double lon = -5.8494;
